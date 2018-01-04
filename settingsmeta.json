@@ -1,0 +1,54 @@
+{
+  "name": "MQTT",
+  "skillMetadata": {
+    "sections": [
+      {
+        "name": "MQTT Broker",
+        "fields": [
+          {
+            "name": "ssl",
+            "label": "ssl",
+            "type": "bool",
+            "vale": ""
+          },
+          {
+            "name": "host",
+            "label": "Host",
+            "type": "text",
+            "value": ""
+          },
+          {
+            "name": "port",
+            "label": "Port",
+            "type": "int",
+            "value": ""
+          },
+          {
+            "name": "auth",
+            "label": "Authentification",
+            "type": "bool",
+            "value": ""
+          },
+          {
+            "name": "username",
+            "label": "Username",
+            "type": "text",
+            "value": ""
+          },
+          {
+            "name": "password",
+            "label": "Password",
+            "type": "password",
+            "value": ""
+          },
+          {
+            "name": "certificate",
+            "label": "Certificate",
+            "type": "text",
+            "value": ""
+          }
+        ]
+      }
+    ]
+  }
+}
