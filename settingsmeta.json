@@ -1,48 +1,48 @@
 {
-  "name": "MQTT",
+  "name": "Smart Home",
   "skillMetadata": {
     "sections": [
       {
-        "name": "MQTT Broker",
+        "name": "MQTT Broker Configuration",
         "fields": [
           {
-            "name": "ssl",
+            "name": "mqtt-ssl",
             "label": "ssl",
             "type": "bool",
             "vale": ""
           },
           {
-            "name": "host",
+            "name": "mqtt-host",
             "label": "Host",
             "type": "text",
             "value": ""
           },
           {
-            "name": "port",
+            "name": "mqtt-port",
             "label": "Port",
             "type": "int",
             "value": ""
           },
           {
-            "name": "auth",
+            "name": "mqtt-auth",
             "label": "Authentification",
             "type": "bool",
             "value": ""
           },
           {
-            "name": "username",
+            "name": "mqtt-username",
             "label": "Username",
             "type": "text",
             "value": ""
           },
           {
-            "name": "password",
+            "name": "mqtt-password",
             "label": "Password",
             "type": "password",
             "value": ""
           },
           {
-            "name": "certificate",
+            "name": "mqtt-certificate",
             "label": "Certificate",
             "type": "text",
             "value": ""

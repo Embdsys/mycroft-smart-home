@@ -1,2 +1,2 @@
-{command} {device} {action}
-{command} {action} {device}
+{command} {module} {action} (in {room} | )
+{command} {action} {module} (in {room} | )
