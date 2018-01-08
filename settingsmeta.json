@@ -1,15 +1,27 @@
 {
   "name": "Smart Home",
+  "color": "#045f8e",
   "skillMetadata": {
     "sections": [
+      {
+        "name": "Protocols",
+        "fields": [
+          {
+            "name": "protocols",
+            "label": "Comma separated list of protocols to use.\nAvailable: mqtt",
+            "type": "text",
+            "value": ""
+          }
+        ]
+      },
       {
         "name": "MQTT Broker Configuration",
         "fields": [
           {
             "name": "mqtt-ssl",
             "label": "ssl",
-            "type": "bool",
-            "vale": ""
+            "type": "text",
+            "value": "no"
           },
           {
             "name": "mqtt-host",
@@ -26,8 +38,8 @@
           {
             "name": "mqtt-auth",
             "label": "Authentification",
-            "type": "bool",
-            "value": ""
+            "type": "text",
+            "value": "no"
           },
           {
             "name": "mqtt-username",

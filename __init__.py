@@ -12,7 +12,7 @@ class SmartHomeSkill(MycroftSkill):
     def __init__(self):
         super(SmartHomeSkill, self).__init__(name='Smart Home skill')
 
-        self.protocols = self.settings.get('protocols')
+        self.protocols = ",".split(self.settings.get('protocols'))
         self.clients = []
 
         for protocol in self.protocols:
