@@ -12,11 +12,11 @@ class SmartHomeSkill(MycroftSkill):
     def __init__(self):
         super(SmartHomeSkill, self).__init__(name='Smart Home skill')
 
-        self.protocols = self.config.get('protocols')
+        self.protocols = self.settings.get('protocols')
         self.clients = []
 
         for protocol in self.protocols:
-            self.clients.append(create_client(protocol, self.config))
+            self.clients.append(create_client(protocol, self.settings))
 
     def initialize(self):
         self.load_data_files(dirname(__file__))

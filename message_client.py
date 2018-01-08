@@ -31,7 +31,7 @@ class Message(object):
 
 
 class Client(object):
-    def __init__(self, config, protocol):
+    def __init__(self, settings, protocol):
         super(Client, self).__init__()
         self.protocol = protocol
 
@@ -59,16 +59,16 @@ class MQTTClient(Client):
     """Client class for interaction over the IoT protocol mqtt
     """
 
-    def __init__(self, config):
-        super(MQTTClient, self).__init__(config=config, protocol='mqtt')
+    def __init__(self, settings):
+        super(MQTTClient, self).__init__(settings=settings, protocol='mqtt')
 
-        self.ssl = config.get('mqtt-ssl')
-        self.cert = config.get('mqtt-certificate')
-        self.host = config.get('mqtt-host')
-        self.port = config.get('mqtt-port')
-        self.auth = config.get('mqtt-auth')
-        self.user = config.get('mqtt-username')
-        self.password = config.get('mqtt-password')
+        self.ssl = settings.get('mqtt-ssl')
+        self.cert = settings.get('mqtt-certificate')
+        self.host = settings.get('mqtt-host')
+        self.port = settings.get('mqtt-port')
+        self.auth = settings.get('mqtt-auth')
+        self.user = settings.get('mqtt-username')
+        self.password = settings.get('mqtt-password')
 
         self.registered_handlers = {}
         self.connected = False
@@ -127,17 +127,17 @@ class MQTTClient(Client):
         self.client.subscribe(topic)
 
 
-def create_client(protocol, config):
+def create_client(protocol, settings):
     """Create the appropriate client for a specified protocol
 
     Args:
         protocol(str): protocol to be used
-        config(dict): skill config object containing
+        settings(dict): skill settings object containing
 
     Returns:
         Client: Client object
     """
     if protocol == "mqtt":
-        return MQTTClient(config)
+        return MQTTClient(settings)
     else:
         LOG.error("Protocol {} not supported".format(protocol))
