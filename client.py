@@ -61,11 +61,10 @@ class MQTTClient(Client):
 
     def __init__(self, settings):
         super(MQTTClient, self).__init__(settings=settings, protocol='mqtt')
-
         self.ssl = settings.get('mqtt-ssl')
         self.cert = settings.get('mqtt-certificate')
         self.host = settings.get('mqtt-host')
-        self.port = settings.get('mqtt-port')
+        self.port = int(settings.get('mqtt-port'))
         self.auth = settings.get('mqtt-auth')
         self.user = settings.get('mqtt-username')
         self.password = settings.get('mqtt-password')
@@ -74,9 +73,9 @@ class MQTTClient(Client):
         self.connected = False
 
         self.client = mqtt.Client('MycroftAI')
-        if self.auth:
+        if self.auth == 'yes':
             self.client.username_pw_set(self.user, self.password)
-        if self.ssl:
+        if self.ssl == 'yes':
             self.client.tls_set(self.cert)
 
         self.client.on_connect = self._on_connect
@@ -116,7 +115,7 @@ class MQTTClient(Client):
 
     def send(self, message):
         dest = '/'.join(message.destination)
-        self.client.publish(dest, message.data)
+        self.client.publish(dest, json.dumps(message.data))
 
     def receive(self, message):
         pass
@@ -141,3 +140,4 @@ def create_client(protocol, settings):
         return MQTTClient(settings)
     else:
         LOG.error("Protocol {} not supported".format(protocol))
+        return None
