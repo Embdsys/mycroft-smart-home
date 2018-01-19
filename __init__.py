@@ -1,13 +1,13 @@
 from os.path import dirname, abspath
 
 import sys
-
+import importlib
 from mycroft.skills.core import MycroftSkill
 from mycroft.util.log import LOG
 
 sys.path.append(abspath(dirname(__file__)))
-create_client = __import__('message_client').create_client
-Message = __import__('message_client').Message
+
+client = importlib.import_module('client', dirname(__file__))
 
 __author__ = 'mikonse'
 
@@ -21,14 +21,14 @@ class SmartHomeSkill(MycroftSkill):
         self.clients = []
 
         for protocol in self.protocols:
-            self.clients.append(create_client(protocol, self.settings))
+            self.clients.append(client.create_client(protocol, self.settings))
 
     def initialize(self):
         self.load_data_files(dirname(__file__))
         self.__build_intents()
 
-        for client in self.clients:
-            client.start()
+        for c in self.clients:
+            c.connect()
 
     def __build_intents(self):
         self.register_entity_file('action.entity')
@@ -47,16 +47,17 @@ class SmartHomeSkill(MycroftSkill):
             'action': message.data.get('action')
         }
         destination = [message.data.get('module')]
-        new_message = Message(
+        new_message = c.Message(
             type="",
             destination=destination,
             data=data
         )
-        for client in self.clients:
-            client.send(new_message)
+        for c in self.clients:
+            c.send(new_message)
 
     def stop(self):
-        pass
+        for c in self.clients:
+            c.disconnect()
 
 
 def create_skill():
