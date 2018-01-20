@@ -6,7 +6,7 @@ A very basic use case would be turning on a led strip by using an ESP8266.
 
 ## Example
 An example command would be **Turn on the light in the kitchen**. 
-This would send a command over all configured protocols to **/light/kitchen** with the data {"action": "on"}.
+This would send a command over all configured protocols to **/light/kitchen** with the data **{"action": "on"}**.
 
 ## Usage
 The protocols to be used can be configured on mycroft home.
